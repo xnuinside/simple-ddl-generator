@@ -12,6 +12,8 @@ jinja2 = "^3.0.3"
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
 simple-ddl-parser = "^0.24.0"
+m2r2 = "^0.3.2"
+twine = "^3.7.1"
 
 [build-system]
 requires = ["poetry>=0.12"]

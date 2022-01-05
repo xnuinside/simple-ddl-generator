@@ -14,6 +14,6 @@ class Generator:
         self.dialect = dialect
     
     def render_template(self) -> str:
-        print(self.tables)
         template = jinja2_env.get_template('common.jinja2')
+        print(self.tables)
         return template.render(**self.tables)
