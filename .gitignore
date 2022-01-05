@@ -1,0 +1,6 @@
+*.pyc
+simple_ddl_generator/__pycache__
+dist/
+.pytest_cache/
+.vscode/
+simple_ddl_generator.egg-info/
