@@ -6,7 +6,6 @@ from simple_ddl_generator.generator import Generator
 class DDLGenerator:
     
     def __init__(self, data: Dict, dialect: str = 'sql') -> None:
-        print(data)
         self.data = data
         self.ddl_output = None
         self.dialect = dialect

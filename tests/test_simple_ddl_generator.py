@@ -47,3 +47,42 @@ PARTITIONED BY (batch_id int);"""
     g.generate()
     assert g.result == expected
 
+
+
+def test_hql_several_more_properties():
+    ddl = """CREATE TABLE IF NOT EXISTS default.salesorderdetail(
+        SalesOrderID int,
+        ProductID int,
+        OrderQty int,
+        LineTotal decimal
+        )
+    PARTITIONED BY (batch_id int, batch_id2 string, batch_32 some_type)
+    LOCATION 's3://datalake/table_name/v1'
+    ROW FORMAT DELIMITED
+        FIELDS TERMINATED BY ','
+        COLLECTION ITEMS TERMINATED BY '\002'
+        MAP KEYS TERMINATED BY '\003'
+    STORED AS TEXTFILE
+    """
+    # get result from parser
+    data = DDLParser(ddl).run(group_by_type=True, output_mode="hql")
+
+    # rename, for example, table name
+
+    g = DDLGenerator(data)
+    data["tables"][0]["location"] = "s3://new_location"
+    g.generate()
+    expected = r"""CREATE TABLE "default.salesorderdetail" (
+SalesOrderID int,
+ProductID int,
+OrderQty int,
+LineTotal decimal)
+PARTITIONED BY (batch_id int, batch_id2 string, batch_32 some_type)
+LOCATION s3://new_location
+ROW FORMAT DELIMITED
+FIELDS TERMINATED BY ,
+MAP KEYS TERMINATED BY '\003'
+COLLECTION ITEMS TERMINATED BY '\002'
+STORED AS TEXTFILE;"""
+    
+    assert expected == g.result

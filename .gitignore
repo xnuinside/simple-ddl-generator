@@ -4,3 +4,4 @@ dist/
 .pytest_cache/
 .vscode/
 simple_ddl_generator.egg-info/
+simple_ddl_generator/test.py
