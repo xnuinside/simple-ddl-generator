@@ -12,6 +12,7 @@ class DDLGenerator:
         
     def generate(self) -> str:
         self.tables = ddl_to_meta(self.data)
+
         self.generate_ddl()
         return self.ddl_output
     
