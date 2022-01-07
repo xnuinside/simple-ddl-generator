@@ -13,13 +13,13 @@ hql_table_properties = ['location', 'row_format', 'fields_terminated_by',
 
 class Generator:
     
-    def __init__(self, tables: TableMeta, dialect: str) -> None:
-        self.tables = tables
+    def __init__(self, data: TableMeta, dialect: str) -> None:
+        self.data = data
         self.dialect = dialect
     
     def render_template(self) -> str:
         template = jinja2_env.get_template('common.jinja2')
-        print(self.tables)
+
         return template.render(
             properties_as_is=hql_table_properties,
-            **self.tables)
+            **self.data)

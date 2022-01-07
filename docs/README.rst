@@ -27,6 +27,13 @@ Simple DDL Generator generate SQL DDL from 3 different inputs. Idea of the gener
 
 Simple DDL Generator generate SQL DDL from 3 input formats - 1st from output Simple DDL Parser (https://github.com/xnuinside/simple-ddl-parser), 2nd from py-models-parser - https://github.com/xnuinside/py-models-parser. Or you can directly pass TableMeta classes (https://github.com/xnuinside/table-meta) to generator
 
+Generate DDL from Django, SQLAlchemy, Dataclasses, Pydantic models and other
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Generator can generate DDL from all models that supported & parsed by https://github.com/xnuinside/py-models-parser.
+
+If you need DDL generation from another Python Model types - open issue request to add support for this models in parser. 
+
 How to use
 ----------
 
@@ -36,6 +43,11 @@ As usually - more samples in tests/
 
 
        pip install simple-ddl-generator
+
+Generate / Modify using existed DDL with Simple-DDL-Parser
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Sample how you can modify your DDL using Simple DDL Parser & Simple DDL Parser
 
 .. code-block:: python
 
@@ -82,8 +94,60 @@ As usually - more samples in tests/
        PARTITIONED BY (batch_id int);
        """
 
+Generate DDL from various Python Models with py-models-parser
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. code-block:: python
+
+
+       from simple_ddl_generator import DDLGenerator
+       from py_models_parser import parse
+
+       # you can also read them from file
+       model_from = """
+           class Material(BaseModel):
+
+               id: int
+               title: str
+               description: Optional[str]
+               link: str = 'http://'
+               type: Optional[MaterialType]
+               additional_properties: Optional[Json]
+               created_at: Optional[datetime.datetime] = datetime.datetime.now()
+               updated_at: Optional[datetime.datetime]
+           """
+       # get data with parser
+       result = parse(model_from)
+
+       # pass data to DDL Generator
+       g = DDLGenerator(result)
+       g.generate()
+       print(g.result)  
+
+       # resul will be
+
+       """CREATE TABLE "Material" (
+   id INTEGER,
+   title VARCHAR,
+   description VARCHAR,
+   link VARCHAR DEFAULT 'http://',
+   type MaterialType,
+   additional_properties JSON,
+   created_at DATETIME DEFAULT now(),
+   updated_at DATETIME);
+   """
+
 Changelog
 ---------
+
+**v0.2.0**
+
+
+#. Updated parser version in tests.
+#. Added support for EXTERNAL & IF NOT EXISTS statetements.
+#. Added support for using py-models-parser output as input and added sample in README.md:
+
+DDL Generation from Pydantic, SQLAlchemy and other python models.
 
 **v0.1.0**
 

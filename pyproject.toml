@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "simple-ddl-generator"
-version = "0.1.0"
+version = "0.2.0"
 description = "Library to generate DDL for different dialects"
 authors = ["Iuliia Volkova <xnuinside@gmail.com>"]
 readme = "docs/README.rst"
@@ -22,6 +22,7 @@ simple-ddl-parser = "^0.24.1"
 m2r2 = "^0.3.2"
 twine = "^3.7.1"
 pre-commit = "^2.16.0"
+py-models-parser = "^0.6.0"
 
 [build-system]
 requires = ["poetry>=0.12"]
