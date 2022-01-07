@@ -1,3 +1,11 @@
+**v0.2.0**
+
+1. Updated parser version in tests.
+2. Added support for EXTERNAL & IF NOT EXISTS statetements.
+3. Added support for using py-models-parser output as input and added sample in README.md:
+
+DDL Generation from Pydantic, SQLAlchemy and other python models.
+
 **v0.1.0**
 
 Base Generator Functionality with several test cases.

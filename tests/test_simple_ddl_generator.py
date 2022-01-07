@@ -1,10 +1,11 @@
-from simple_ddl_generator import DDLGenerator
 from simple_ddl_parser import DDLParser
+
+from simple_ddl_generator import DDLGenerator
 
 
 def test_simple_generation():
     expected = 'CREATE TABLE "new_table";'
-        
+
     ddl = "create table new_table;"
     data = DDLParser(ddl).run(group_by_type=True, output_mode="bigquery")
     g = DDLGenerator(data)
@@ -13,7 +14,7 @@ def test_simple_generation():
 
 
 def test_partitioned_by():
-    expected = """CREATE TABLE "database.new_table_name" (
+    expected = """CREATE EXTERNAL TABLE IF NOT EXISTS "database.new_table_name" (
 day_long_nm string,
 calendar_dt date,
 source_batch_id string,
@@ -38,7 +39,7 @@ PARTITIONED BY (batch_id int);"""
             field_long      bigint
         ) PARTITIONED BY (batch_id int);"""
     # get result from parser
-    data = DDLParser(ddl).run(group_by_type=True, output_mode="bigquery")
+    data = DDLParser(ddl).run(group_by_type=True, output_mode="hql")
 
     # rename, for example, table name
 
@@ -46,7 +47,6 @@ PARTITIONED BY (batch_id int);"""
     g = DDLGenerator(data)
     g.generate()
     assert g.result == expected
-
 
 
 def test_hql_several_more_properties():
@@ -72,7 +72,7 @@ def test_hql_several_more_properties():
     g = DDLGenerator(data)
     data["tables"][0]["location"] = "s3://new_location"
     g.generate()
-    expected = r"""CREATE TABLE "default.salesorderdetail" (
+    expected = r"""CREATE TABLE IF NOT EXISTS "default.salesorderdetail" (
 SalesOrderID int,
 ProductID int,
 OrderQty int,
@@ -80,9 +80,9 @@ LineTotal decimal)
 PARTITIONED BY (batch_id int, batch_id2 string, batch_32 some_type)
 LOCATION s3://new_location
 ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ,
+FIELDS TERMINATED BY ','
 MAP KEYS TERMINATED BY '\003'
 COLLECTION ITEMS TERMINATED BY '\002'
 STORED AS TEXTFILE;"""
-    
+
     assert expected == g.result

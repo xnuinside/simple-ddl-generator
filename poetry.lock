@@ -132,6 +132,19 @@ testing = ["covdefaults (>=1.2.0)", "coverage (>=4)", "pytest (>=4)", "pytest-co
 
 [[package]]
 category = "dev"
+description = "the modular source code checker: pep8 pyflakes and co"
+name = "flake8"
+optional = false
+python-versions = ">=3.6"
+version = "4.0.1"
+
+[package.dependencies]
+mccabe = ">=0.6.0,<0.7.0"
+pycodestyle = ">=2.8.0,<2.9.0"
+pyflakes = ">=2.4.0,<2.5.0"
+
+[[package]]
+category = "dev"
 description = "File identification library for Python"
 name = "identify"
 optional = false
@@ -233,6 +246,14 @@ version = "2.0.1"
 
 [[package]]
 category = "dev"
+description = "McCabe checker, plugin for flake8"
+name = "mccabe"
+optional = false
+python-versions = "*"
+version = "0.6.1"
+
+[[package]]
+category = "dev"
 description = "The fastest markdown parser in pure Python"
 name = "mistune"
 optional = false
@@ -265,6 +286,17 @@ version = "21.3"
 
 [package.dependencies]
 pyparsing = ">=2.0.2,<3.0.5 || >3.0.5"
+
+[[package]]
+category = "dev"
+description = "(Soon to be) the fastest pure-Python PEG parser I could muster"
+name = "parsimonious"
+optional = false
+python-versions = "*"
+version = "0.8.1"
+
+[package.dependencies]
+six = ">=1.9.0"
 
 [[package]]
 category = "dev"
@@ -334,6 +366,25 @@ version = "1.11.0"
 
 [[package]]
 category = "dev"
+description = "Parser for Different Python Models (Pydantic, Enums, ORMs: Tortoise, SqlAlchemy, GinoORM, PonyORM, Pydal tables) to extract information about columns(attrs), model, table args,etc in one format."
+name = "py-models-parser"
+optional = false
+python-versions = ">=3.6,<4.0"
+version = "0.6.0"
+
+[package.dependencies]
+parsimonious = ">=0.8.1,<0.9.0"
+
+[[package]]
+category = "dev"
+description = "Python style guide checker"
+name = "pycodestyle"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+version = "2.8.0"
+
+[[package]]
+category = "dev"
 description = "C parser in Python"
 marker = "sys_platform == \"linux\""
 name = "pycparser"
@@ -355,6 +406,14 @@ typing-extensions = ">=3.7.4.3"
 [package.extras]
 dotenv = ["python-dotenv (>=0.10.4)"]
 email = ["email-validator (>=1.0.3)"]
+
+[[package]]
+category = "dev"
+description = "passive checker of Python programs"
+name = "pyflakes"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
+version = "2.4.0"
 
 [[package]]
 category = "dev"
@@ -436,7 +495,7 @@ description = "Python HTTP for Humans."
 name = "requests"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*"
-version = "2.27.0"
+version = "2.27.1"
 
 [package.dependencies]
 certifi = ">=2017.4.17"
@@ -495,7 +554,7 @@ description = "Simple DDL Parser to parse SQL & dialects like HQL, TSQL (MSSQL),
 name = "simple-ddl-parser"
 optional = false
 python-versions = ">=3.6,<4.0"
-version = "0.24.0"
+version = "0.24.1"
 
 [package.dependencies]
 ply = ">=3.11,<4.0"
@@ -514,7 +573,7 @@ description = "Universal class that created to be a middleware, universal mappin
 name = "table-meta"
 optional = false
 python-versions = ">=3.6.2,<4.0"
-version = "0.1.5"
+version = "0.2.2"
 
 [package.dependencies]
 pydantic = ">=1.8.2,<2.0.0"
@@ -630,7 +689,7 @@ docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [metadata]
-content-hash = "c95052ebfb4ef6d43589bcb23bb30726207108eb58e3d6e2eeabc8856b7c59c0"
+content-hash = "2e0143985b8c865155302730f4f9a25b7ad8825b9b9d845a52db0c2ecc1be54b"
 lock-version = "1.0"
 python-versions = "^3.8"
 
@@ -749,6 +808,10 @@ filelock = [
     {file = "filelock-3.4.2-py3-none-any.whl", hash = "sha256:cf0fc6a2f8d26bd900f19bf33915ca70ba4dd8c56903eeb14e1e7a2fd7590146"},
     {file = "filelock-3.4.2.tar.gz", hash = "sha256:38b4f4c989f9d06d44524df1b24bd19e167d851f19b50bf3e3559952dddc5b80"},
 ]
+flake8 = [
+    {file = "flake8-4.0.1-py2.py3-none-any.whl", hash = "sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d"},
+    {file = "flake8-4.0.1.tar.gz", hash = "sha256:806e034dda44114815e23c16ef92f95c91e4c71100ff52813adf7132a6ad870d"},
+]
 identify = [
     {file = "identify-2.4.1-py2.py3-none-any.whl", hash = "sha256:0192893ff68b03d37fed553e261d4a22f94ea974093aefb33b29df2ff35fed3c"},
     {file = "identify-2.4.1.tar.gz", hash = "sha256:64d4885e539f505dd8ffb5e93c142a1db45480452b1594cacd3e91dca9a984e9"},
@@ -813,6 +876,10 @@ markupsafe = [
     {file = "MarkupSafe-2.0.1-cp39-cp39-win_amd64.whl", hash = "sha256:693ce3f9e70a6cf7d2fb9e6c9d8b204b6b39897a2c4a1aa65728d5ac97dcc1d8"},
     {file = "MarkupSafe-2.0.1.tar.gz", hash = "sha256:594c67807fb16238b30c44bdf74f36c02cdf22d1c8cda91ef8a0ed8dabf5620a"},
 ]
+mccabe = [
+    {file = "mccabe-0.6.1-py2.py3-none-any.whl", hash = "sha256:ab8a6258860da4b6677da4bd2fe5dc2c659cff31b3ee4f7f5d64e79735b80d42"},
+    {file = "mccabe-0.6.1.tar.gz", hash = "sha256:dd8d182285a0fe56bace7f45b5e7d1a6ebcbf524e8f3bd87eb0f125271b8831f"},
+]
 mistune = [
     {file = "mistune-0.8.4-py2.py3-none-any.whl", hash = "sha256:88a1051873018da288eee8538d476dffe1262495144b33ecb586c4ab266bb8d4"},
     {file = "mistune-0.8.4.tar.gz", hash = "sha256:59a3429db53c50b5c6bcc8a07f8848cb00d7dc8bdb431a4ab41920d201d4756e"},
@@ -828,6 +895,9 @@ nodeenv = [
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
     {file = "packaging-21.3.tar.gz", hash = "sha256:dd47c42927d89ab911e606518907cc2d3a1f38bbd026385970643f9c5b8ecfeb"},
+]
+parsimonious = [
+    {file = "parsimonious-0.8.1.tar.gz", hash = "sha256:3add338892d580e0cb3b1a39e4a1b427ff9f687858fdd61097053742391a9f6b"},
 ]
 pkginfo = [
     {file = "pkginfo-1.8.2-py2.py3-none-any.whl", hash = "sha256:c24c487c6a7f72c66e816ab1796b96ac6c3d14d49338293d2141664330b55ffc"},
@@ -852,6 +922,14 @@ pre-commit = [
 py = [
     {file = "py-1.11.0-py2.py3-none-any.whl", hash = "sha256:607c53218732647dff4acdfcd50cb62615cedf612e72d1724fb1a0cc6405b378"},
     {file = "py-1.11.0.tar.gz", hash = "sha256:51c75c4126074b472f746a24399ad32f6053d1b34b68d2fa41e558e6f4a98719"},
+]
+py-models-parser = [
+    {file = "py-models-parser-0.6.0.tar.gz", hash = "sha256:3dffed9ee79c9d7d62de1dfd939122bc6c48fc314c839c79d94d835f0d2633ae"},
+    {file = "py_models_parser-0.6.0-py3-none-any.whl", hash = "sha256:0b6d0996ad56aa3fa98fe8ec2be74980e444959be84413ce855362f1573b8dfb"},
+]
+pycodestyle = [
+    {file = "pycodestyle-2.8.0-py2.py3-none-any.whl", hash = "sha256:720f8b39dde8b293825e7ff02c475f3077124006db4f440dcbc9a20b76548a20"},
+    {file = "pycodestyle-2.8.0.tar.gz", hash = "sha256:eddd5847ef438ea1c7870ca7eb78a9d47ce0cdb4851a5523949f2601d0cbbe7f"},
 ]
 pycparser = [
     {file = "pycparser-2.21-py2.py3-none-any.whl", hash = "sha256:8ee45429555515e1f6b185e78100aea234072576aa43ab53aefcae078162fca9"},
@@ -893,6 +971,10 @@ pydantic = [
     {file = "pydantic-1.9.0-cp39-cp39-win_amd64.whl", hash = "sha256:2cc6a4cb8a118ffec2ca5fcb47afbacb4f16d0ab8b7350ddea5e8ef7bcc53a16"},
     {file = "pydantic-1.9.0-py3-none-any.whl", hash = "sha256:085ca1de245782e9b46cefcf99deecc67d418737a1fd3f6a4f511344b613a5b3"},
     {file = "pydantic-1.9.0.tar.gz", hash = "sha256:742645059757a56ecd886faf4ed2441b9c0cd406079c2b4bee51bcc3fbcd510a"},
+]
+pyflakes = [
+    {file = "pyflakes-2.4.0-py2.py3-none-any.whl", hash = "sha256:3bb3a3f256f4b7968c9c788781e4ff07dce46bdf12339dcda61053375426ee2e"},
+    {file = "pyflakes-2.4.0.tar.gz", hash = "sha256:05a85c2872edf37a4ed30b0cce2f6093e1d0581f8c19d7393122da7e25b2b24c"},
 ]
 pygments = [
     {file = "Pygments-2.11.1-py3-none-any.whl", hash = "sha256:9135c1af61eec0f650cd1ea1ed8ce298e54d56bcd8cc2ef46edd7702c171337c"},
@@ -950,8 +1032,8 @@ readme-renderer = [
     {file = "readme_renderer-32.0.tar.gz", hash = "sha256:b512beafa6798260c7d5af3e1b1f097e58bfcd9a575da7c4ddd5e037490a5b85"},
 ]
 requests = [
-    {file = "requests-2.27.0-py2.py3-none-any.whl", hash = "sha256:f71a09d7feba4a6b64ffd8e9d9bc60f9bf7d7e19fd0e04362acb1cfc2e3d98df"},
-    {file = "requests-2.27.0.tar.gz", hash = "sha256:8e5643905bf20a308e25e4c1dd379117c09000bf8a82ebccc462cfb1b34a16b5"},
+    {file = "requests-2.27.1-py2.py3-none-any.whl", hash = "sha256:f22fa1e554c9ddfd16e6e41ac79759e17be9e492b3587efa038054674760e72d"},
+    {file = "requests-2.27.1.tar.gz", hash = "sha256:68d7c56fd5a8999887728ef304a6d12edc7be74f1cfa47714fc8b414525c9a61"},
 ]
 requests-toolbelt = [
     {file = "requests-toolbelt-0.9.1.tar.gz", hash = "sha256:968089d4584ad4ad7c171454f0a5c6dac23971e9472521ea3b6d49d610aa6fc0"},
@@ -966,16 +1048,16 @@ secretstorage = [
     {file = "SecretStorage-3.3.1.tar.gz", hash = "sha256:fd666c51a6bf200643495a04abb261f83229dcb6fd8472ec393df7ffc8b6f195"},
 ]
 simple-ddl-parser = [
-    {file = "simple-ddl-parser-0.24.0.tar.gz", hash = "sha256:882910fdb55314e8c8ae1620715974b396b819046f00f6b4b022208ee2a04481"},
-    {file = "simple_ddl_parser-0.24.0-py3-none-any.whl", hash = "sha256:0e0554b02ffb264e93506ca16b2b3b92b62fd9f7e9afcf5d61702269f3b7690a"},
+    {file = "simple-ddl-parser-0.24.1.tar.gz", hash = "sha256:54a9111d10689006de59224d4dc5faf0cd416bdae777dc980d8f8029c080e841"},
+    {file = "simple_ddl_parser-0.24.1-py3-none-any.whl", hash = "sha256:b6c7c5abab17dd87c4f4ccbfbf1540f1ea24e5bc9eb4ae093c4de62e54fb0892"},
 ]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
 ]
 table-meta = [
-    {file = "table-meta-0.1.5.tar.gz", hash = "sha256:66de6770ead04198f4fbce202e0091bc24d1391429df37d644328e5d54d3bb87"},
-    {file = "table_meta-0.1.5-py3-none-any.whl", hash = "sha256:94166eea85db1e332f6860b7ca7f4361e51d66ce42d7596774a861d39029afb3"},
+    {file = "table-meta-0.2.2.tar.gz", hash = "sha256:c570cb3cffa63a6f7ef29611f7c979dbdf26484ae607a67511a4b1591cac5c7f"},
+    {file = "table_meta-0.2.2-py3-none-any.whl", hash = "sha256:8830cfcd85e3fa029babac71136e3bdcbadbdb4e980d198580796068600d9a6c"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
