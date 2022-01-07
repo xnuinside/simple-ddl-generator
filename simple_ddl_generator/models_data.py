@@ -1,11 +1,12 @@
 from typing import Dict
+
 from simple_ddl_generator.type_converter import prepare_type
 
 
 def default_cleaner(default_value: str):
     if default_value:
-        if 'datetime.' in default_value:
-            default_value = default_value.split('datetime.')[-1]
+        if "datetime." in default_value:
+            default_value = default_value.split("datetime.")[-1]
     return default_value
 
 

@@ -1,10 +1,11 @@
-from simple_ddl_generator import DDLGenerator
 from simple_ddl_parser import DDLParser
+
+from simple_ddl_generator import DDLGenerator
 
 
 def test_simple_generation():
     expected = 'CREATE TABLE "new_table";'
-        
+
     ddl = "create table new_table;"
     data = DDLParser(ddl).run(group_by_type=True, output_mode="bigquery")
     g = DDLGenerator(data)
@@ -48,7 +49,6 @@ PARTITIONED BY (batch_id int);"""
     assert g.result == expected
 
 
-
 def test_hql_several_more_properties():
     ddl = """CREATE TABLE IF NOT EXISTS default.salesorderdetail(
         SalesOrderID int,
@@ -84,5 +84,5 @@ FIELDS TERMINATED BY ','
 MAP KEYS TERMINATED BY '\003'
 COLLECTION ITEMS TERMINATED BY '\002'
 STORED AS TEXTFILE;"""
-    
+
     assert expected == g.result

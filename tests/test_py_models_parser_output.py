@@ -1,6 +1,6 @@
-from simple_ddl_generator import DDLGenerator
-
 from py_models_parser import parse
+
+from simple_ddl_generator import DDLGenerator
 
 
 def test_ddl_from_pydantic_model():

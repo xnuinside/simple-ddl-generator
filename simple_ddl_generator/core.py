@@ -1,19 +1,23 @@
-from table_meta import ddl_to_meta, models_to_meta, TableMeta
 from typing import Dict
+
+from table_meta import TableMeta, ddl_to_meta, models_to_meta
+
 from simple_ddl_generator.generator import Generator
 from simple_ddl_generator.models_data import prepare_models_data
 
+
 class DDLGenerator:
-    
-    def __init__(self, data: Dict, dialect: str = 'sql') -> None:
+    def __init__(self, data: Dict, dialect: str = "sql") -> None:
         self.data = data
         self.ddl_output = None
         self.dialect = dialect
-    
+
     def convert_to_table_meta(self):
-        print(self.data, 'DATAAA')
-        if not isinstance(self.data, dict) or not isinstance(self.data['tables'][0], TableMeta):
-            if isinstance(self.data, dict) and not "attrs" in self.data['tables'][0]:
+
+        if not isinstance(self.data, dict) or not isinstance(
+            self.data["tables"][0], TableMeta
+        ):
+            if isinstance(self.data, dict) and "attrs" not in self.data["tables"][0]:
                 self.prepared_data = ddl_to_meta(self.data)
             else:
                 self.prepare_models_data()
@@ -26,13 +30,13 @@ class DDLGenerator:
     def generate(self) -> str:
         self.convert_to_table_meta()
         self.generate_ddl()
-        
+
         return self.ddl_output
-    
+
     def to_file(self, file_name) -> None:
-        """ saves ddl to file """
+        """saves ddl to file"""
         self.generate()
-        with open(file_name, 'w+') as target_file:
+        with open(file_name, "w+") as target_file:
             target_file.write(self.ddl_output)
 
     def generate_ddl(self) -> str:

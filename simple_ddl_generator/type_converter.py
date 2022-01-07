@@ -1,8 +1,11 @@
 from typing import Dict
-from table_meta.model import Column
 
 uuid_types = ("uuid", "uuid4", "uuid1")
-arrays_types = ("list", "tuple", "set", )
+arrays_types = (
+    "list",
+    "tuple",
+    "set",
+)
 
 string_types = (
     "str",
@@ -15,7 +18,7 @@ string_types = (
     "String",
 )
 
-text_types = ("text")
+text_types = "text"
 datetime_types = (
     "time",
     "datetime.datetime",
@@ -37,10 +40,7 @@ numeric_types = ("decimal", "numeric", "double")
 
 boolean_types = ("boolean", "bool")
 
-timestamp_types = (
-    "timestamp",
-    "datetime.time"
-)
+timestamp_types = ("timestamp", "datetime.time")
 datetime_types = (
     "DATETIME",
     "DATE",
@@ -61,8 +61,8 @@ models_types_mapping = {
     jsonb_types: "JSONB",
     uuid_types: "UUID",
     arrays_types: "ARRAY",
-    
 }
+
 
 def populate_types_mapping(mapper: Dict) -> Dict:
     types_mapping = {}
@@ -76,11 +76,11 @@ def prepare_type(_type: str) -> str:
     if "Optional" in _type:
         # python Optional type
         _type = _type.split("Optional[")[1].replace("]", "")
-    
+
     column_data_type = _type.split("[")[0]
-    
+
     for type_collection, mapped_value in models_types_mapping.items():
         if column_data_type.lower() in type_collection:
             return mapped_value
-    
+
     return column_data_type
