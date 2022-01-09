@@ -1,3 +1,15 @@
+**v0.3.0**
+New Features:
+1. Added CREATE TYPE generation from Python Enum & simple-ddl-parser types metadata
+
+Improvements:
+1. Added more test cases with models into tests
+2. Now output generated with empty line at the end
+
+Fixes:
+
+1. Fixed issue with "" in names if quotes already exists in table-name in metadata
+
 **v0.2.0**
 
 1. Updated parser version in tests.

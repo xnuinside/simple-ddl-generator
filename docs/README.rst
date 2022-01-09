@@ -119,6 +119,8 @@ Generate DDL from various Python Models with py-models-parser
        # get data with parser
        result = parse(model_from)
 
+       # if you want lower case table name before DDL generation you can just change in the result metadata, like this:
+       # result[0].table_name = "material"
        # pass data to DDL Generator
        g = DDLGenerator(result)
        g.generate()
@@ -137,8 +139,90 @@ Generate DDL from various Python Models with py-models-parser
    updated_at DATETIME);
    """
 
+Generate DDL Enum types from Python Enum & DDLs
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Now parser also generate CREATE TYPE statements.
+
+For example (sample for generation DDL from Dataclasses):
+
+.. code-block:: python
+
+
+       from simple_ddl_generator import DDLGenerator
+       from py_models_parser import parse
+
+       model_from = """
+
+       class MaterialType(str, Enum):
+
+           article = 'article'
+           video = 'video'
+
+
+       @dataclass
+       class Material:
+
+           id: int
+           description: str = None
+           additional_properties: Union[dict, list, tuple, anything] = None
+           created_at: datetime.datetime = datetime.datetime.now()
+           updated_at: datetime.datetime = None
+
+       @dataclass
+       class Material2:
+
+           id: int
+           description: str = None
+           additional_properties: Union[dict, list] = None
+           created_at: datetime.datetime = datetime.datetime.now()
+           updated_at: datetime.datetime = None
+
+       """
+       result = parse(model_from)
+
+       g = DDLGenerator(result)
+       g.generate()
+       print(g.result)
+
+   # result will be:
+
+   """CREATE TYPE MaterialType AS ENUM  ('article','video');
+
+   CREATE TABLE Material (
+   id INTEGER,
+   description VARCHAR DEFAULT NULL,
+   additional_properties JSON DEFAULT NULL,
+   created_at DATETIME DEFAULT now(),
+   updated_at DATETIME DEFAULT NULL);
+
+   CREATE TABLE Material2 (
+   id INTEGER,
+   description VARCHAR DEFAULT NULL,
+   additional_properties JSON DEFAULT NULL,
+   created_at DATETIME DEFAULT now(),
+   updated_at DATETIME DEFAULT NULL);
+   """
+
 Changelog
 ---------
+
+**v0.3.0**
+New Features:
+
+
+#. Added CREATE TYPE generation from Python Enum & simple-ddl-parser types metadata
+
+Improvements:
+
+
+#. Added more test cases with models into tests
+#. Now output generated with empty line at the end
+
+Fixes:
+
+
+#. Fixed issue with "" in names if quotes already exists in table-name in metadata
 
 **v0.2.0**
 

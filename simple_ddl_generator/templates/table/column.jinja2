@@ -1,0 +1,1 @@
+{% include "table/column_base.jinja2" %}{{" NOT NULL" if not column.nullable else ""}}{{" PRIMARY KEY" if column.primary_key else ""}}{{" UNIQUE" if column.unique else ""}}{{ column.references if column.references}}{{ " DEFAULT " + column.default if column.default}}
