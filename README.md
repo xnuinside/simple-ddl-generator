@@ -99,6 +99,8 @@ Sample how you can modify your DDL using Simple DDL Parser & Simple DDL Parser
     # get data with parser
     result = parse(model_from)
 
+    # if you want lower case table name before DDL generation you can just change in the result metadata, like this:
+    # result[0].table_name = "material"
     # pass data to DDL Generator
     g = DDLGenerator(result)
     g.generate()
@@ -118,6 +120,12 @@ updated_at DATETIME);
 """
 
 ```
+
+### Generate DDL Enum types from Python Enum & DDLs
+
+Now parser also generate CREATE TYPE statements.
+
+For example:
 
 
 ## Changelog

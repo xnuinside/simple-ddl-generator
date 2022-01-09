@@ -17,7 +17,7 @@ def test_ddl_from_pydantic_model():
 
     g = DDLGenerator(result)
     g.generate()
-    expected = """CREATE TABLE "Material" (
+    expected = """CREATE TABLE Material (
 id INTEGER,
 title VARCHAR,
 description VARCHAR,
@@ -27,3 +27,7 @@ additional_properties JSON,
 created_at DATETIME DEFAULT now(),
 updated_at DATETIME);"""
     assert expected == g.result
+
+
+def test_enum_generated():
+    pass

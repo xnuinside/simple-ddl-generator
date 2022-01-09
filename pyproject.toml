@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "simple-ddl-generator"
-version = "0.2.0"
+version = "0.3.0"
 description = "Library to generate DDL for different dialects"
 authors = ["Iuliia Volkova <xnuinside@gmail.com>"]
 readme = "docs/README.rst"

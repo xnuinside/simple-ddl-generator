@@ -1,0 +1,2 @@
+CREATE{% include "table/before_table.jinja2" %} TABLE{{" IF NOT EXISTS" if table.properties.if_not_exists else ""}} {%if table.project%}{{table.project}}.{%endif%}{%if table.table_schema%}{{table.table_schema}}.{%endif%}{{table.name}}{% if table.columns %} ({%for column in table.columns %}
+{% include "table/column.jinja2" %}{{"," if not loop.last }}{%endfor%}){% endif %}{% include "table/table_properties.jinja2" %};
