@@ -1,7 +1,6 @@
 **v0.3.0**
 New Features:
 1. Added CREATE TYPE generation from Python Enum & simple-ddl-parser types metadata
-2. Added support for passing Directly models - added example how to use it in README.md
 
 Improvements:
 1. Added more test cases with models into tests

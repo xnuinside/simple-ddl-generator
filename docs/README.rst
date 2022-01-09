@@ -212,7 +212,6 @@ New Features:
 
 
 #. Added CREATE TYPE generation from Python Enum & simple-ddl-parser types metadata
-#. Added support for passing Directly models - added example how to use it in README.md
 
 Improvements:
 
