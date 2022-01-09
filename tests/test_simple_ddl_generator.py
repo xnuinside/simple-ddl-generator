@@ -4,7 +4,7 @@ from simple_ddl_generator import DDLGenerator
 
 
 def test_simple_generation():
-    expected = "CREATE TABLE new_table;"
+    expected = "CREATE TABLE new_table;\n"
 
     ddl = "create table new_table;"
     data = DDLParser(ddl).run(group_by_type=True, output_mode="bigquery")
@@ -24,7 +24,8 @@ field_float float,
 create_tmst timestamp,
 field_double double,
 field_long bigint)
-PARTITIONED BY (batch_id int);"""
+PARTITIONED BY (batch_id int);
+"""
 
     ddl = """CREATE EXTERNAL TABLE IF NOT EXISTS database.table_name
         (
@@ -37,7 +38,8 @@ PARTITIONED BY (batch_id int);"""
             create_tmst     timestamp,
             field_double    double,
             field_long      bigint
-        ) PARTITIONED BY (batch_id int);"""
+        ) PARTITIONED BY (batch_id int);
+"""
     # get result from parser
     data = DDLParser(ddl).run(group_by_type=True, output_mode="hql")
 
@@ -83,7 +85,8 @@ ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 MAP KEYS TERMINATED BY '\003'
 COLLECTION ITEMS TERMINATED BY '\002'
-STORED AS TEXTFILE;"""
+STORED AS TEXTFILE;
+"""
 
     assert expected == g.result
 
@@ -107,5 +110,6 @@ def test_create_type():
     expected = """CREATE TYPE "ContentType" AS ENUM  ('TEXT','MARKDOWN','HTML');
 
 CREATE TABLE "schema--notification"."notification" (
-content_type "ContentType");"""
+content_type "ContentType");
+"""
     assert expected == g.result

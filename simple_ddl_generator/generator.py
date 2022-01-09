@@ -27,5 +27,6 @@ class Generator:
     def render_template(self) -> str:
         template = jinja2_env.get_template("common.jinja2")
         print(self.data.keys())
+        print(self.data["tables"])
         print(self.data["types"])
         return template.render(properties_as_is=hql_table_properties, **self.data)

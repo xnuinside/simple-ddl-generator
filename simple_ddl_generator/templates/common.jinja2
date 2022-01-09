@@ -1,1 +1,1 @@
-{% if types %}{%for type in types %}{% include "type/create_type.jinja2" with context %}{%endfor%}{{"\n\n"}}{%endif%}{% if tables %}{%for table in tables %}{% include "table/create_table.jinja2" with context %}{%endfor%}{%endif%}
+{% if types %}{%for type in types %}{% include "type/create_type.jinja2" with context %}{%endfor%}{{"\n\n"}}{%endif%}{% if tables %}{%for table in tables %}{% include "table/create_table.jinja2" with context %}{{"\n\n" if not loop.last else "\n"}}{%endfor%}{%endif%}

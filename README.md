@@ -125,7 +125,65 @@ updated_at DATETIME);
 
 Now parser also generate CREATE TYPE statements.
 
-For example:
+For example (sample for generation DDL from Dataclasses):
+
+```python
+
+    from simple_ddl_generator import DDLGenerator
+    from py_models_parser import parse
+
+    model_from = """
+
+    class MaterialType(str, Enum):
+
+        article = 'article'
+        video = 'video'
+
+
+    @dataclass
+    class Material:
+
+        id: int
+        description: str = None
+        additional_properties: Union[dict, list, tuple, anything] = None
+        created_at: datetime.datetime = datetime.datetime.now()
+        updated_at: datetime.datetime = None
+
+    @dataclass
+    class Material2:
+
+        id: int
+        description: str = None
+        additional_properties: Union[dict, list] = None
+        created_at: datetime.datetime = datetime.datetime.now()
+        updated_at: datetime.datetime = None
+
+    """
+    result = parse(model_from)
+
+    g = DDLGenerator(result)
+    g.generate()
+    print(g.result)
+
+# result will be:
+
+"""CREATE TYPE MaterialType AS ENUM  ('article','video');
+
+CREATE TABLE Material (
+id INTEGER,
+description VARCHAR DEFAULT NULL,
+additional_properties JSON DEFAULT NULL,
+created_at DATETIME DEFAULT now(),
+updated_at DATETIME DEFAULT NULL);
+
+CREATE TABLE Material2 (
+id INTEGER,
+description VARCHAR DEFAULT NULL,
+additional_properties JSON DEFAULT NULL,
+created_at DATETIME DEFAULT now(),
+updated_at DATETIME DEFAULT NULL);
+"""
+```
 
 
 ## Changelog
