@@ -113,3 +113,26 @@ CREATE TABLE "schema--notification"."notification" (
 content_type "ContentType");
 """
     assert expected == g.result
+
+
+def test_comment():
+
+    ddl = """
+    CREATE EXTERNAL TABLE test (
+    test STRING NULL COMMENT 'xxxx',
+    )
+    PARTITIONED BY (snapshot STRING, cluster STRING)
+    """
+
+    parser = DDLParser(ddl)
+
+    data = parser.run(output_mode="hql", group_by_type=True)
+
+    g = DDLGenerator(data)
+    g.generate()
+    result = g.result
+    expected = """CREATE EXTERNAL TABLE test (
+test STRING COMMENT 'xxxx')
+PARTITIONED BY (snapshot STRING, cluster STRING);
+"""
+    assert result == expected

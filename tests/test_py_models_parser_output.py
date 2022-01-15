@@ -152,7 +152,7 @@ addresses 'Address');
 CREATE TABLE address (
 id db.Integer PRIMARY KEY,
 email db.String(120) NOT NULL,
-person_id db.Integer NOT NULL);
+person_id db.Integer NOT NULL FOREIGN KEY REFERENCES 'person.id');
 """
 
     models_str = """
