@@ -189,6 +189,16 @@ updated_at DATETIME DEFAULT NULL);
 
 
 ## Changelog
+**v0.4.1**
+New Features:
+1. Added COMMENT statement to table generation
+
+Improvements:
+1. Added test to catch debug output (reminder: stop release at the middle night)
+
+Fixes:
+1. Fixed issue with 
+
 **v0.4.0**
 New Features:
 1. Added base support for REFERENCE statement generation
