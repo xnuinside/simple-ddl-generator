@@ -23,7 +23,7 @@ def prepare_enum_values(attrs: List[Dict]) -> List:
 def prepare_models_data(data: Dict) -> Dict:
     for table in data["tables"]:
         for column in table.columns:
-            column.type = prepare_type(column.type)
+            column.type = prepare_type(column.type, column)
             column.default = default_cleaner(column.default)
     for _type in data["types"]:
         if _type.base_type.upper() == "ENUM":

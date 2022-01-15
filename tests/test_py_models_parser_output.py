@@ -80,3 +80,95 @@ created_at DATETIME DEFAULT now(),
 updated_at DATETIME DEFAULT NULL);
 """
     assert expected == g.result
+
+
+def test_references_from_django():
+    expected = """CREATE TABLE Publication (
+title VARCHAR);
+
+CREATE TABLE Article (
+headline VARCHAR,
+publications INTEGER FOREIGN KEY REFERENCES Publication);
+"""
+
+    model_from = """
+from django.db import models
+
+    class Publication(models.Model):
+        title = models.CharField(max_length=30)
+
+        class Meta:
+            ordering = ['title']
+
+        def __str__(self):
+            return self.title
+
+    class Article(models.Model):
+        headline = models.CharField(max_length=100)
+        publications = models.ManyToManyField(Publication)
+
+        class Meta:
+            ordering = ['headline']
+
+        def __str__(self):
+            return self.headline
+    """
+    result = parse(model_from)
+
+    g = DDLGenerator(result)
+    g.generate()
+
+    assert g.result == expected
+
+
+def test_primary_key_and_unique():
+    models_str = """
+    class User(db.Model):
+        id = db.Column(db.Integer, primary_key=True)
+        username = db.Column(db.String(80), unique=True, nullable=False)
+        email = db.Column(db.String(120), unique=True, nullable=False)
+
+        def __repr__(self):
+            return '<User %r>' % self.username
+    """
+    result = parse(models_str)
+
+    g = DDLGenerator(result)
+    g.generate()
+    expected = """CREATE TABLE User (
+id db.Integer PRIMARY KEY,
+username db.String(80) UNIQUE,
+email db.String(120) UNIQUE);
+"""
+    expected == g.result
+
+
+def test_lowercase():
+    expected = """CREATE TABLE person (
+id db.Integer PRIMARY KEY,
+name db.String(50) NOT NULL,
+addresses 'Address');
+
+CREATE TABLE address (
+id db.Integer PRIMARY KEY,
+email db.String(120) NOT NULL,
+person_id db.Integer NOT NULL);
+"""
+
+    models_str = """
+class Person(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(50), nullable=False)
+    addresses = db.relationship('Address', backref='person', lazy=True)
+
+class Address(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String(120), nullable=False)
+    person_id = db.Column(db.Integer, db.ForeignKey('person.id'),
+        nullable=False)
+"""
+    result = parse(models_str)
+
+    g = DDLGenerator(result, lowercase=True)
+    g.generate()
+    assert g.result == expected
