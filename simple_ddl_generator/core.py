@@ -7,10 +7,13 @@ from simple_ddl_generator.models_data import prepare_models_data
 
 
 class DDLGenerator:
-    def __init__(self, data: Dict, dialect: str = "sql") -> None:
+    def __init__(
+        self, data: Dict, dialect: str = "sql", lowercase: bool = False
+    ) -> None:
         self.data = data
         self.ddl_output = None
         self.dialect = dialect
+        self.lowercase = lowercase
 
     def convert_to_table_meta(self):
 
@@ -40,5 +43,7 @@ class DDLGenerator:
             target_file.write(self.ddl_output)
 
     def generate_ddl(self) -> str:
-        self.result = Generator(self.prepared_data, self.dialect).render_template()
+        self.result = Generator(
+            self.prepared_data, self.dialect, self.lowercase
+        ).render_template()
         return self.result

@@ -1,5 +1,7 @@
 from typing import Dict
 
+from table_meta.model import Column
+
 uuid_types = ("uuid", "uuid4", "uuid1")
 arrays_types = (
     "list",
@@ -72,11 +74,10 @@ def populate_types_mapping(mapper: Dict) -> Dict:
     return types_mapping
 
 
-def prepare_type(_type: str) -> str:
+def prepare_type(_type: str, column: Column) -> str:
     if "Optional" in _type:
         # python Optional type
         _type = _type.split("Optional[")[1].replace("]", "")
-
     column_data_type = _type.split("[")[0]
 
     for type_collection, mapped_value in models_types_mapping.items():

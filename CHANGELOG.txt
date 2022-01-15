@@ -1,3 +1,11 @@
+**v0.4.0**
+New Features:
+1. Added base support for REFERENCE statement generation
+2. Added UNIQUE to column
+3. Added PRIMARY KEY to column
+3. To DDLGenerator added param lowercase to lowercase tables name.
+
+
 **v0.3.0**
 New Features:
 1. Added CREATE TYPE generation from Python Enum & simple-ddl-parser types metadata

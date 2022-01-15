@@ -207,6 +207,15 @@ For example (sample for generation DDL from Dataclasses):
 Changelog
 ---------
 
+**v0.4.0**
+New Features:
+
+
+#. Added base support for REFERENCE statement generation
+#. Added UNIQUE to column
+#. Added PRIMARY KEY to column
+#. To DDLGenerator added param lowercase to lowercase tables name.
+
 **v0.3.0**
 New Features:
 
