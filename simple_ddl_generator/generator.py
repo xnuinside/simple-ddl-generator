@@ -27,7 +27,6 @@ class Generator:
 
     def render_template(self) -> str:
         template = jinja2_env.get_template("common.jinja2")
-        print(self.data)
         return template.render(
             lower=self.lowercase, properties_as_is=hql_table_properties, **self.data
         )

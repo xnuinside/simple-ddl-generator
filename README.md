@@ -8,6 +8,8 @@ Simple DDL Generator generate SQL DDL from 3 different inputs. Idea of the gener
 
 Simple DDL Generator generate SQL DDL from 3 input formats - 1st from output Simple DDL Parser (https://github.com/xnuinside/simple-ddl-parser), 2nd from py-models-parser - https://github.com/xnuinside/py-models-parser. Or you can directly pass TableMeta classes (https://github.com/xnuinside/table-meta) to generator
 
+Now DDL support pure SQL DDL diclaect and bunch of HQL statements.
+
 ### Generate DDL from Django, SQLAlchemy, Dataclasses, Pydantic models and other
 
 Generator can generate DDL from all models that supported & parsed by https://github.com/xnuinside/py-models-parser.
@@ -187,6 +189,16 @@ updated_at DATETIME DEFAULT NULL);
 
 
 ## Changelog
+**v0.4.1**
+New Features:
+1. Added COMMENT statement to table generation
+
+Improvements:
+1. Added test to catch debug output (reminder: stop release at the middle night)
+
+Fixes:
+1. Fixed issue with 
+
 **v0.4.0**
 New Features:
 1. Added base support for REFERENCE statement generation

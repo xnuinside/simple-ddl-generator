@@ -628,7 +628,7 @@ description = "Universal class that created to be a middleware, universal mappin
 name = "table-meta"
 optional = false
 python-versions = ">=3.6.2,<4.0"
-version = "0.3.1"
+version = "0.3.2"
 
 [package.dependencies]
 pydantic = ">=1.8.2,<2.0.0"
@@ -753,7 +753,7 @@ docs = ["sphinx", "jaraco.packaging (>=8.2)", "rst.linker (>=1.9)"]
 testing = ["pytest (>=4.6)", "pytest-checkdocs (>=2.4)", "pytest-flake8", "pytest-cov", "pytest-enabler (>=1.0.1)", "jaraco.itertools", "func-timeout", "pytest-black (>=0.3.7)", "pytest-mypy"]
 
 [metadata]
-content-hash = "a4ace747a989e5a79d76eb6f4b89eaf54c3b68e80140da14038a59cb42e124e7"
+content-hash = "52b874985dd1e2b66ce4bbdaab9062085980e0f9107a336eb6cdae77a563fa2c"
 lock-version = "1.0"
 python-versions = ">=3.6.2,<4.0"
 
@@ -1128,8 +1128,8 @@ six = [
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
 ]
 table-meta = [
-    {file = "table-meta-0.3.1.tar.gz", hash = "sha256:a6cbb6f857496453cbaf6c831f53c5cadd89a8d965b985e9bf85ca93562b68fa"},
-    {file = "table_meta-0.3.1-py3-none-any.whl", hash = "sha256:32bfa63eb16b1cc8a550c5cd89580ed0ff45b86dc82e765541ebb5641c430fc5"},
+    {file = "table-meta-0.3.2.tar.gz", hash = "sha256:0854d6d3af847a84ca7402a83155e7d76d823cdb94500368c6ccdc046bd1b551"},
+    {file = "table_meta-0.3.2-py3-none-any.whl", hash = "sha256:c858c692b93aeb6223425a74ea471734c3cd87472b96fa2e743dcfd6b8cfca5a"},
 ]
 toml = [
     {file = "toml-0.10.2-py2.py3-none-any.whl", hash = "sha256:806143ae5bfb6a3c6e736a764057db0e6a0e05e338b5630894a5f779cabb4f9b"},
